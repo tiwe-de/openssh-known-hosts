@@ -1,3 +1,12 @@
+openssh-known-hosts (0.4) fsmi-squeeze; urgency=low
+
+  * Don't update ssh_known_hosts if nothing changed.
+  * Plugin curl: Allow passing of CURL_OPTIONS.
+  * Update copyright years.
+  * Bump Standards-Version to 3.9.0.
+
+ -- Timo Weingärtner <timo@tiwe.de>  Sat, 10 Jul 2010 02:11:40 +0200
+
 openssh-known-hosts (0.3) fsmi-squeeze; urgency=low
 
   * Bump Standards-Version to 3.8.4, no changes needed.

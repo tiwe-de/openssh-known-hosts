@@ -9,6 +9,8 @@ Basic variables:
  * EXIT_IGNORE:	space-seperated list of exitcodes which should be ignored, no
 		update is performed for this source then (optional)
 
+The rest of the variables is plugin-specific.
+
 For examples see /usr/share/doc/openssh-known-hosts/examples/*.
 
 Writing a plugin:

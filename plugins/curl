@@ -4,6 +4,7 @@
 #
 # ENVIRONMENT VARIABLES:
 #	URL		URL to download known_hosts file from
+#	CURL_OPTIONS	options passed to curl
 #	SIGURL		URL of the GnuPG signature
 #	KEYRING		path to the keyring for use by gpgv
 #
@@ -11,12 +12,12 @@
 set -e
 
 if [ "${SIGURL}" ]; then
-	curl -Rz "./current" -m 300 -o new.sig "${SIGURL}" -o new "${URL}"
+	curl -Rz "./current" -m 300 ${CURL_OPTIONS} -o new.sig "${SIGURL}" -o new "${URL}"
 	[ -e new ] || exit 0
 	gpgv --keyring "${KEYRING}" --status-fd 2 new.sig || exit 1
 	# return 1 because it's not clear what other codes may used
 else
-	curl -Rz "./current" -m 300 -o new "${URL}"
+	curl -Rz "./current" -m 300 ${CURL_OPTIONS} -o new "${URL}"
 fi
 
 # vim:set ft=sh:

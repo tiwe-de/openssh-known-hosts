@@ -84,9 +84,13 @@ run-parts --list "${CONFDIR}/sources/" | while read sourcefile; do
 	if [ -e ${source}/current ]; then
 		cat ${source}/current >&3
 	fi
-done 3>| "${OUTFILE}.new"
+done 3>&1 | sort -u >| "${OUTFILE}.new"
 
-mv "${OUTFILE}.new" "${OUTFILE}"
+if cmp -s "${OUTFILE}" "${OUTFILE}.new"; then
+	rm "${OUTFILE}.new"
+else
+	mv "${OUTFILE}.new" "${OUTFILE}"
+fi
 
 # clean up cache dirs of vanished sources
 for d in *; do
