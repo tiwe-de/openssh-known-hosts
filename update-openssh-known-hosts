@@ -76,15 +76,15 @@ run-parts --list "${CONFDIR}/sources/" | while read sourcefile; do
 			if [ "$fail" = "1" ]; then
 				exit 1
 			fi
-		}
+		} >&2
 	) || exit 1
 	if [ -e ${source}/new ]; then
 		mv ${source}/new ${source}/current
 	fi
 	if [ -e ${source}/current ]; then
-		cat ${source}/current >&3
+		sort -u ${source}/current >&3
 	fi
-done 3>&1 | sort -u >| "${OUTFILE}.new"
+done 3>| "${OUTFILE}.new"
 
 if cmp -s "${OUTFILE}" "${OUTFILE}.new"; then
 	rm "${OUTFILE}.new"
