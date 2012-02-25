@@ -1,0 +1,5 @@
+PLUGIN=symlink
+# EXIT_IGNORE doesn't make sense here
+EXIT_IGNORE=
+
+LINKDEST=/etc/ssh/ssh_known_hosts_local

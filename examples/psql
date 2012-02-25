@@ -1,0 +1,12 @@
+PLUGIN=psql
+# from psql(1): psql returns 2 if the connection to the server went bad and
+# the session was not interactive
+EXIT_IGNORE=2
+
+PGCLUSTER=8.3/db.example.com:
+PGDATABASE=exampledb
+PGUSER=exampleuser
+PGPASSWORD=foobar # beware: will be readable from /proc/<pid>/environ, better:
+PGPASSFILE=/path/to/.pgpass
+
+TABLE=known_hosts

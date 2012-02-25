@@ -1,6 +1,6 @@
 Copyright:
 
-    <Copyright (C) 2009 Timo Weingärtner>
+    Copyright (C) 2009 Timo Weingärtner <timo@tiwe.de>
 
 License:
 
@@ -20,7 +20,4 @@ License:
 
 On Debian systems, the complete text of the GNU General
 Public License can be found in `/usr/share/common-licenses/GPL'.
-
-The Debian packaging is (C) 2009, Timo Weingärtner <timo@tiwe.de> and
-is licensed under the GPL, see above.
 

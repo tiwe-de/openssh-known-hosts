@@ -25,17 +25,18 @@ lockfile-create "${LOCK}"
 lockfile-touch "${LOCK}" &
 LOCKPID="$!"
 
+mkdir -p "${CACHEDIR}"
 cd "${CACHEDIR}"
 
 find -mindepth 2 -maxdepth 2 -type f -name new -delete
 
-run-parts --list "${CONFDIR}/sources/" | while read source; do
-	source=`basename ${source}`
+run-parts --list "${CONFDIR}/sources/" | while read sourcefile; do
+	source=`basename ${sourcefile}`
 	mkdir -p ${source}
 	(
 		set -a
 		cd ${source}
-		. "${CONFDIR}/sources/${source}"
+		. "${sourcefile}"
 		`path_search "$PLUGIN" "$PLUGIN_PATH"` >| log 2>&1 || {
 			exitcode=$?
 			rm -f new
@@ -63,6 +64,7 @@ done 3>| "${OUTFILE}.new"
 
 mv "${OUTFILE}.new" "${OUTFILE}"
 
+# clean up cache dirs of vanished sources
 for d in *; do
 	[ -d $d ] || continue
 	[ -e "${CONFDIR}/sources/$d" ] || rm -fr $d

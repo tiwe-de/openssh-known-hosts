@@ -1,0 +1,9 @@
+PLUGIN=curl
+# see curl(1), section "EXIT CODES" for details:
+EXIT_IGNORE='6 7 28'
+
+URL='https://www.example.com/known_hosts'
+
+# optional:
+SIGURL='http://www.example.com/known_hosts.sig'
+KEYRING='/path/to/gpgv-compatible.keyring'

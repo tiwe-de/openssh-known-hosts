@@ -1,2 +1,2 @@
-update-known-hosts	usr/share/openssh-known-hosts/
-plugins			usr/share/openssh-known-hosts/
+update-openssh-known-hosts	usr/sbin/
+plugins				usr/share/openssh-known-hosts/

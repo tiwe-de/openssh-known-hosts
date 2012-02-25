@@ -1,7 +1,7 @@
 Writing a source definition:
 ============================
 
-Place a file in /etc/openssh-known-hosts/sources/. Its name must follow
+Place a file in /etc/openssh-known-hosts/sources. Its name must follow
 run-parts' conventions.
 
 Basic variables:
@@ -9,6 +9,7 @@ Basic variables:
  * EXIT_IGNORE:	space-seperated list of exitcodes which should be ignored, no
 		update is performed for this source then (optional)
 
+For examples see /usr/share/doc/openssh-known-hosts/examples/*.
 
 Writing a plugin:
 =================
@@ -18,5 +19,6 @@ plugin gets the variables set in the source definition in its environment. The
 working directory will be set to the source's cache directory. All your plugin
 has to do is to create a file named "new". "current" must not be touched but
 can be used as a hint to skip downloading the same file again. stdout and
-stderr will be connected to "log", which will be output on error.
+stderr will be connected to "log", which will be output on error. You needn't
+create "new" if it would be identical to "current".
 

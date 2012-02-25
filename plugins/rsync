@@ -3,12 +3,20 @@
 # rsync plugin
 #
 # ENVIRONMENT VARIABLES:
-#	URL	URL to download known_hosts file from
+#	URL		URL to download known_hosts file from
+#	SIGURL		URL of the GnuPG signature
+#	KEYRING		path to the keyring for use by gpgv
 #
 
 set -e
 
 ln -f current new || true
 rsync -vt --timeout=300 "${URL}" new
+
+if [ "${SIGURL}" ]; then
+	rsync -vt --timeout=300 "${SIGURL}" new.sig
+	gpgv --keyring "${KEYRING}" --status-fd 2 new.sig || exit 1
+	# return 1 because it's not clear what other codes may used
+fi	
 
 # vim:set ft=sh:

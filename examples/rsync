@@ -1,0 +1,10 @@
+PLUGIN=rsync
+# see rsync(1), section "EXIT VALUES" for details:
+EXIT_IGNORE=10
+
+URL='rsync://rsync.example.com/pub/known_hosts'
+
+# optional:
+SIGURL='rsync://rsync.example.com/pub/known_hosts.sig'
+KEYRING='/path/to/gpgv-compatible.keyring'
+

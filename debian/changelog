@@ -1,3 +1,12 @@
+openssh-known-hosts (0.2) unstable; urgency=low
+
+  * Add examples.
+  * Add optional GnuPG verification in curl and rsync plugins.
+  * Upload to unstable (Closes: #534891)
+  * Rename update-known-hosts to update-$package and install it in /usr/sbin.
+
+ -- Timo Weingärtner <timo@tiwe.de>  Sun, 28 Jun 2009 01:57:44 +0200
+
 openssh-known-hosts (0.1) fsmi-lenny; urgency=low
 
   * Initial Release.
