@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/bash
 
 set -euC
 
@@ -9,17 +9,38 @@ LOCK=/var/lock/openssh-known-hosts
 OUTFILE=/var/lib/openssh-known-hosts/ssh_known_hosts
 
 path_search () {
-	if [ "${1}" != "${1#*/}" ]; then
-		echo $1
-	else
-		echo "$2" | tr ':' '\n' | while read -r path; do
-			if [ -f "${path}/${1}" ]; then
-				echo "${path}/${1}"
-				break
-			fi
-		done
+	search="$1"
+	shift
+	local IFS
+	IFS=:
+	set -- $@
+	if [ "${search}" != "${search#*/}" ]; then
+		echo "${search}"
+		return 0
 	fi
+	for path; do
+		if [ -f "${path}/${search}" ]; then
+			echo "${path}/${search}"
+			return 0
+		fi
+	done
+	echo "'${search}' not found in '$@'!" >&2
+	exit 127
 }
+
+cleanup () {
+	rm -f "${OUTFILE}.new"
+	kill "${LOCKPID}"
+	lockfile-remove "${LOCK}"
+}
+
+if [ $# = 1 ] && [ "$1" = "-f" ]; then
+	fail=1
+else
+	fail=''
+fi
+
+trap cleanup EXIT
 
 lockfile-create "${LOCK}"
 lockfile-touch "${LOCK}" &
@@ -47,13 +68,16 @@ run-parts --list "${CONFDIR}/sources/" | while read sourcefile; do
 					break
 				fi
 			done
-			if [ ! "$ignore" ]; then
+			if [ "$ignore" != "1" -o "$fail" = "1" ]; then
 				echo "${source} exited with code ${exitcode}, log follows:"
 				cat log
 				echo
 			fi
+			if [ "$fail" = "1" ]; then
+				exit 1
+			fi
 		}
-	)
+	) || exit 1
 	if [ -e ${source}/new ]; then
 		mv ${source}/new ${source}/current
 	fi
@@ -69,8 +93,5 @@ for d in *; do
 	[ -d $d ] || continue
 	[ -e "${CONFDIR}/sources/$d" ] || rm -fr $d
 done
-
-kill "${LOCKPID}"
-lockfile-remove "${LOCK}"
 
 # vim:set ft=sh:

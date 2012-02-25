@@ -3,7 +3,7 @@ Section: net
 Priority: extra
 Maintainer: Timo Weingärtner <timo@tiwe.de>
 Build-Depends: debhelper (>= 7)
-Standards-Version: 3.8.1
+Standards-Version: 3.8.4
 
 Package: openssh-known-hosts
 Architecture: all
@@ -12,5 +12,9 @@ Recommends: openssh-client, cron
 Suggests: postgresql-client, rsync, curl, gpgv
 Description: known_hosts downloader for OpenSSH
  This package allows you to download public hostkeys from multiple sources
- and merge them together into one file for use by OpenSSH. Plugins for some
- types of sources are included, new plugins can easily be written.
+ and merge them together into one file for use by OpenSSH. Plugins included:
+  * curl (optional GnuPG verification)
+  * rsync (optional GnuPG verification)
+  * psql
+  * symlink
+ New plugins can easily be written.

@@ -1,3 +1,13 @@
+openssh-known-hosts (0.3) fsmi-squeeze; urgency=low
+
+  * Bump Standards-Version to 3.8.4, no changes needed.
+  * Use dh in debian/rules.
+  * Remove /usr/local/share/openssh-known-hosts in prerm.
+  * Add debian/source/format.
+  * Quote umlauts in manpage.
+
+ -- Timo Weingärtner <timo@tiwe.de>  Wed, 28 Apr 2010 17:06:32 +0200
+
 openssh-known-hosts (0.2) unstable; urgency=low
 
   * Add examples.

@@ -40,6 +40,9 @@ if [ -L /etc/ssh/ssh_known_hosts ] && \
 	rm /etc/ssh/ssh_known_hosts
 fi
 
+rmdir /usr/local/share/openssh-known-hosts/plugins 2>/dev/null || true
+rmdir /usr/local/share/openssh-known-hosts 2>/dev/null || true
+
 exit 0
 
 
