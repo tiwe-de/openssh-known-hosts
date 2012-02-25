@@ -1,0 +1,14 @@
+#!/bin/dash
+
+# rsync plugin
+#
+# ENVIRONMENT VARIABLES:
+#	URL	URL to download known_hosts file from
+#
+
+set -e
+
+ln -f current new || true
+rsync -vt --timeout=300 "${URL}" new
+
+# vim:set ft=sh:

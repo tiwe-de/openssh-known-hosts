@@ -1,0 +1,25 @@
+#!/bin/dash
+
+# psql plugin
+#
+# uses psql to download a table (or view) of the form:
+# CREATE TABLE known_hosts (
+#	namelist	text, # comma seperated
+#	type		text,
+#	key		text
+# );
+#
+# ENVIRONMENT VARIABLES:
+#	TABLE		table to download
+# used by psql:
+#	PGCLUSTER	see pg_wrapper(1)
+#	PGDATABASE	see psql(1)
+#	PGUSER		..
+#	PGPASSFILE	..
+#
+
+set -e
+
+psql -F ' ' -Atc "SELECT * FROM ${TABLE}" > new
+
+# vim:set ft=sh:

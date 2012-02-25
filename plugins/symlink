@@ -1,0 +1,14 @@
+#!/bin/dash
+
+# symlink plugin
+#
+# ENVIRONMENT VARIABLES:
+#	LINKDEST	known_hosts file to link to
+#
+
+set -e
+
+[ -f "${LINKDEST}" ] && [ -r "${LINKDEST}" ]
+ln -sf "${LINKDEST}" new
+
+# vim:set ft=sh:

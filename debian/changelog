@@ -1,0 +1,5 @@
+openssh-known-hosts (0.1) fsmi-lenny; urgency=low
+
+  * Initial Release.
+
+ -- Timo Weingärtner <timo@tiwe.de>  Wed, 24 Jun 2009 19:19:10 +0200

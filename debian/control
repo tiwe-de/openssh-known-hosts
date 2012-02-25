@@ -1,0 +1,17 @@
+Source: openssh-known-hosts
+Section: net
+Priority: extra
+Maintainer: Timo Weingärtner <timo@tiwe.de>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.1
+#Homepage: <insert the upstream URL, if relevant>
+
+Package: openssh-known-hosts
+Architecture: all
+Depends: dash, lockfile-progs, ${shlibs:Depends}, ${misc:Depends}
+Recommends: openssh-client
+Suggests: postgresql-client, rsync, curl
+Description: known_hosts downloader for OpenSSH
+ This package allows you to download public hostkeys from various sources and
+ merge them together into one file for use by OpenSSH. Plugins for some types
+ of sources are included, new plugins can easily be written.

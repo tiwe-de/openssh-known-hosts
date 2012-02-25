@@ -1,0 +1,13 @@
+#!/bin/dash
+
+# curl plugin
+#
+# ENVIRONMENT VARIABLES:
+#	URL		URL to download known_hosts file from
+#
+
+set -e
+
+curl -Rz "./current" -m 300 -o new "${URL}"
+
+# vim:set ft=sh:
