@@ -3,8 +3,10 @@ PLUGIN=psql
 # the session was not interactive
 EXIT_IGNORE=2
 
-PGCLUSTER=8.3/db.example.com:
+PGHOST=db.example.com
 PGDATABASE=exampledb
+PGSSLMODE=verify-full
+PGSSLROOTCERT=/etc/ssl/certs/examplerootcert
 PGUSER=exampleuser
 PGPASSWORD=foobar # beware: will be readable from /proc/<pid>/environ, better:
 PGPASSFILE=/path/to/.pgpass

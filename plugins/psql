@@ -2,20 +2,18 @@
 
 # psql plugin
 #
-# uses psql to download a table (or view) of the form:
+# uses psql to download a TABLE (or VIEW) of the form:
 # CREATE TABLE known_hosts (
 #	namelist	text, # comma seperated
 #	type		text,
 #	key		text
 # );
+# alternatively only one column with spaces between those three
 #
 # ENVIRONMENT VARIABLES:
 #	TABLE		table to download
 # used by psql:
-#	PGCLUSTER	see pg_wrapper(1)
-#	PGDATABASE	see psql(1)
-#	PGUSER		..
-#	PGPASSFILE	..
+#	PG*		see psql(1)
 #
 
 set -e
