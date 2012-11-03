@@ -7,7 +7,7 @@ Standards-Version: 3.9.4
 
 Package: openssh-known-hosts
 Architecture: all
-Depends: dash, lockfile-progs, ${misc:Depends}
+Depends: lockfile-progs, ${misc:Depends}
 Recommends: openssh-client, cron
 Suggests: postgresql-client, rsync, curl, gpgv
 Description: known_hosts downloader for OpenSSH
