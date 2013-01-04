@@ -13,6 +13,21 @@ The rest of the variables is plugin-specific.
 
 For examples see /usr/share/doc/openssh-known-hosts/examples/*.
 
+Writing a hostname filter:
+==========================
+
+Place a file $source.filter next to your $source in
+/etc/openssh-known-hosts/sources.
+
+Each line shall contain a rule consisting of an action, a space and a pattern.
+The first rule with a matching pattern decides: If the action starts with a,
+o, p or y (for accept, admit, allow, ok, pass, permit, print, yes, ...) the
+hostname will be used, otherwise it is discarded. If a key has no hostnames
+left it is discarded as a whole.
+
+An example filter can be found in
+/usr/share/doc/openssh-known-hosts/examples/curl.filter.
+
 Writing a plugin:
 =================
 

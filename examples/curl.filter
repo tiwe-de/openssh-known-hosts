@@ -1,0 +1,9 @@
+# example filter file, can be used with any plugin
+# deny some subareas first
+# in most cases you won't need that
+deny sub\.example\.com$
+deny ^2001:db8:f00:
+# then allow what we are downloading the keys for
+allow \.example\.com$
+allow ^2001:db8:
+allow ^192\.0\.2\.
