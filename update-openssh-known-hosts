@@ -14,7 +14,7 @@ path_search () {
 	local IFS
 	IFS=:
 	set -- $@
-	if [ "${search}" != "${search#*/}" ]; then
+	if [[ ${search} =~ / ]]; then
 		echo "${search}"
 		return 0
 	fi
@@ -34,7 +34,7 @@ cleanup () {
 	lockfile-remove "${LOCK}"
 }
 
-if [ $# = 1 ] && [ "$1" = "-f" ]; then
+if [ $# -eq 1 ] && [ "$1" = "-f" ]; then
 	fail=1
 else
 	fail=''
@@ -52,28 +52,28 @@ cd "${CACHEDIR}"
 find -mindepth 2 -maxdepth 2 -type f -name new -delete
 
 run-parts --list "${CONFDIR}/sources/" | while read sourcefile; do
-	source=`basename ${sourcefile}`
+	source=${sourcefile##*/}
 	mkdir -p ${source}
 	(
 		set -a
 		cd ${source}
 		. "${sourcefile}"
-		`path_search "$PLUGIN" "$PLUGIN_PATH"` >| log 2>&1 || {
+		$(path_search "$PLUGIN" "$PLUGIN_PATH") >| log 2>&1 || {
 			exitcode=$?
 			rm -f new
 			ignore=''
 			for e in ${EXIT_IGNORE:-0}; do
-				if [ "$e" = "$exitcode" ]; then
+				if [[ $e = $exitcode ]]; then
 					ignore=1
 					break
 				fi
 			done
-			if [ "$ignore" != "1" -o "$fail" = "1" ]; then
+			if [ -z "$ignore" -o "$fail" ]; then
 				echo "${source} exited with code ${exitcode}, log follows:"
 				cat log
 				echo
 			fi
-			if [ "$fail" = "1" ]; then
+			if [ "$fail" ]; then
 				exit 1
 			fi
 		} >&2
