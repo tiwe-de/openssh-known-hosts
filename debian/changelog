@@ -1,0 +1,39 @@
+openssh-known-hosts (0.5) fsmi-squeeze; urgency=low
+
+  * Fix fd redirection (Errors went into ssh_known_hosts).
+
+ -- Timo Weingärtner <timo@tiwe.de>  Sat, 10 Jul 2010 18:51:56 +0200
+
+openssh-known-hosts (0.4) fsmi-squeeze; urgency=low
+
+  * Don't update ssh_known_hosts if nothing changed.
+  * Plugin curl: Allow passing of CURL_OPTIONS.
+  * Update copyright years.
+  * Bump Standards-Version to 3.9.0.
+
+ -- Timo Weingärtner <timo@tiwe.de>  Sat, 10 Jul 2010 02:11:40 +0200
+
+openssh-known-hosts (0.3) fsmi-squeeze; urgency=low
+
+  * Bump Standards-Version to 3.8.4, no changes needed.
+  * Use dh in debian/rules.
+  * Remove /usr/local/share/openssh-known-hosts in prerm.
+  * Add debian/source/format.
+  * Quote umlauts in manpage.
+
+ -- Timo Weingärtner <timo@tiwe.de>  Wed, 28 Apr 2010 17:06:32 +0200
+
+openssh-known-hosts (0.2) unstable; urgency=low
+
+  * Add examples.
+  * Add optional GnuPG verification in curl and rsync plugins.
+  * Upload to unstable (Closes: #534891)
+  * Rename update-known-hosts to update-$package and install it in /usr/sbin.
+
+ -- Timo Weingärtner <timo@tiwe.de>  Sun, 28 Jun 2009 01:57:44 +0200
+
+openssh-known-hosts (0.1) fsmi-lenny; urgency=low
+
+  * Initial Release.
+
+ -- Timo Weingärtner <timo@tiwe.de>  Wed, 24 Jun 2009 19:19:10 +0200
