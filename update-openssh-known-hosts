@@ -83,28 +83,32 @@ run-parts --list "${CONFDIR}/sources/" | while read sourcefile; do
 	fi
 	if [ -e ${source}/current ]; then
 		if [ -e "${sourcefile}.filter" ]; then
-			mapfile -t filter < "${sourcefile}.filter"
-			for i in ${!filter[@]}; do
-				if [[ ${filter[$i]} =~ ^($|#) ]]; then
-					unset filter[$i]
-				fi
-			done
-			while read hostlist rest; do
-				IFS=, read -a hostarray <<<$hostlist
-				new_hostlist=''
-				for host in ${hostarray[@]}; do
-					for rule in "${filter[@]}"; do
-						if [[ ${host} =~ ${rule#* } ]]; then
-							if [[ ${rule%% *} =~ ^[aopy] ]]; then
-								new_hostlist="${new_hostlist}${host},"
-							fi
-							break
-						fi
-					done
+			if [[ ${source}/filtered -ot ${source}/current ]] || [[ ${source}/filtered -ot ${sourcefile}.filter ]]; then
+				mapfile -t filter < "${sourcefile}.filter"
+				for i in ${!filter[@]}; do
+					if [[ ${filter[$i]} =~ ^($|#) ]]; then
+						unset filter[$i]
+					fi
 				done
-				[ "$new_hostlist" ] || continue
-				echo "${new_hostlist%,} ${rest}"
-			done < ${source}/current | sort -u >&3
+				while read hostlist rest; do
+					IFS=, read -a hostarray <<<$hostlist
+					new_hostlist=''
+					for host in ${hostarray[@]}; do
+						for rule in "${filter[@]}"; do
+							if [[ ${host} =~ ${rule#* } ]]; then
+								if [[ ${rule%% *} =~ ^[aopy] ]]; then
+									new_hostlist="${new_hostlist}${host},"
+								fi
+								break
+							fi
+						done
+					done
+					[ "$new_hostlist" ] || continue
+					echo "${new_hostlist%,} ${rest}"
+				done < ${source}/current | sort -u >| ${source}/filtered.new
+				mv ${source}/filtered.new ${source}/filtered
+			fi
+			cat ${source}/filtered >&3
 		else
 			sort -u ${source}/current >&3
 		fi
