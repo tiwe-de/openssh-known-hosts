@@ -1,3 +1,18 @@
+openssh-known-hosts (0.6-1) unstable; urgency=low
+
+  * New upstream version with hostname filtering.
+  * Upload to unstable (Closes: #534891)
+  * Bump Standards Version to 3.9.4.
+  * Drop dash Depends: (dash is essential)
+  * use copyright-format 1.0
+  * add watch file
+  * add Homepage: and Vcs-*: fields
+  * update maintainerscripts:
+    + add postrm to clean up cache and lib dirs
+    + no longer remove stuff on upgrades in prerm
+
+ -- Timo Weingärtner <timo@tiwe.de>  Thu, 10 Jan 2013 15:11:58 +0100
+
 openssh-known-hosts (0.5) fsmi-squeeze; urgency=low
 
   * Fix fd redirection (Errors went into ssh_known_hosts).
@@ -27,7 +42,6 @@ openssh-known-hosts (0.2) unstable; urgency=low
 
   * Add examples.
   * Add optional GnuPG verification in curl and rsync plugins.
-  * Upload to unstable (Closes: #534891)
   * Rename update-known-hosts to update-$package and install it in /usr/sbin.
 
  -- Timo Weingärtner <timo@tiwe.de>  Sun, 28 Jun 2009 01:57:44 +0200
