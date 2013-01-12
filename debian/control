@@ -13,7 +13,7 @@ Architecture: all
 Depends: lockfile-progs, ${misc:Depends}
 Recommends: openssh-client, cron
 Suggests: postgresql-client, rsync, curl, gpgv
-Description: known_hosts downloader/filterer/merger for OpenSSH
+Description: download, filter and merge known_hosts for OpenSSH
  This package allows you to download public hostkeys from multiple sources,
  filter the hostnames coming with them and merge them together into one
  file for use by OpenSSH. Plugins included:
