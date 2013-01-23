@@ -3,6 +3,11 @@ PLUGIN=rsync
 EXIT_IGNORE=10
 
 URL='rsync://rsync.example.com/pub/known_hosts'
+# or:
+#URL='rsync.example.com::pub/known_hosts'
+# or (with a chicken and egg problem regarding the server's public hostkey):
+#URL='ssh.example.com:/path/to/known_hosts'
+#RSYNC_RSH='ssh -i /path/to/identity'
 
 # optional:
 SIGURL='rsync://rsync.example.com/pub/known_hosts.sig'
