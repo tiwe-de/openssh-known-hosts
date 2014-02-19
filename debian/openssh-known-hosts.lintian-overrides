@@ -1,0 +1,2 @@
+# long line contains long string, warning not avoidable
+openssh-known-hosts: manpage-has-errors-from-man usr/share/man/man8/update-openssh-known-hosts.8.gz 34: warning [p 1, 5.0i]: cannot adjust line
