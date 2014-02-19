@@ -1,7 +1,19 @@
+openssh-known-hosts (0.6.1-1) unstable; urgency=medium
+
+  * Avoid German-isms in Description:
+    Thanks to Philipp Kern <pkern@debian.org>
+  * add random sleep to cron.d file to reduce DDoS effects on servers
+  * New upstream version
+  * rely on dh_usrlocal
+  * Bump Standards Version to 3.9.5.
+  * debian/watch: use github directly
+  * Upload to unstable (Closes: #534891)
+
+ -- Timo Weingärtner <timo@tiwe.de>  Wed, 19 Feb 2014 12:34:07 +0100
+
 openssh-known-hosts (0.6-1) unstable; urgency=low
 
   * New upstream version with hostname filtering.
-  * Upload to unstable (Closes: #534891)
   * Bump Standards Version to 3.9.4.
   * Drop dash Depends: (dash is essential)
   * use copyright-format 1.0
