@@ -20,20 +20,6 @@ set -e
 
 case "$1" in
 	configure|abort-upgrade|abort-remove|abort-deconfigure)
-		if [ ! -e /usr/local/share/openssh-known-hosts ]; then
-			if mkdir /usr/local/share/openssh-known-hosts 2>/dev/null; then
-				if chown root:staff /usr/local/share/openssh-known-hosts; then
-					chmod 2775 /usr/local/share/openssh-known-hosts || true
-				fi
-			fi
-		fi
-		if [ ! -e /usr/local/share/openssh-known-hosts/plugins ]; then
-			if mkdir /usr/local/share/openssh-known-hosts/plugins 2>/dev/null; then
-				if chown root:staff /usr/local/share/openssh-known-hosts/plugins; then
-					chmod 2775 /usr/local/share/openssh-known-hosts/plugins || true
-				fi
-			fi
-		fi
 		[ -e /etc/ssh/ssh_known_hosts ] || ln -s /var/lib/openssh-known-hosts/ssh_known_hosts /etc/ssh/ssh_known_hosts
 		if [ "`readlink /etc/ssh/ssh_known_hosts`" != /var/lib/openssh-known-hosts/ssh_known_hosts ]; then
 			echo "/etc/ssh/ssh_known_hosts already exists, please set up the link to"

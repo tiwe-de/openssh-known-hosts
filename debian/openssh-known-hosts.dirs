@@ -2,3 +2,4 @@ var/lib/openssh-known-hosts
 var/cache/openssh-known-hosts
 etc/openssh-known-hosts/sources
 etc/ssh
+usr/local/share/openssh-known-hosts/plugins
