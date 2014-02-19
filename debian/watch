@@ -1,2 +1,2 @@
 version=3
-http://githubredir.debian.net/github/tiwe-de/openssh-known-hosts/ ([^/]+).tar.gz
+https://github.com/tiwe-de/openssh-known-hosts/tags .*/(\d[\d\.]*)\.tar\.gz
