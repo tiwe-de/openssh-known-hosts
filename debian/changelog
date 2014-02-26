@@ -1,3 +1,10 @@
+openssh-known-hosts (0.6.1-2) unstable; urgency=medium
+
+  * postinst: check for dangling but possibly correct symlink
+  * Upload to unstable (Closes: #534891)
+
+ -- Timo Weingärtner <timo@tiwe.de>  Wed, 26 Feb 2014 17:22:27 +0100
+
 openssh-known-hosts (0.6.1-1) unstable; urgency=medium
 
   * Avoid German-isms in Description:
@@ -7,7 +14,6 @@ openssh-known-hosts (0.6.1-1) unstable; urgency=medium
   * rely on dh_usrlocal
   * Bump Standards Version to 3.9.5.
   * debian/watch: use github directly
-  * Upload to unstable (Closes: #534891)
 
  -- Timo Weingärtner <timo@tiwe.de>  Wed, 19 Feb 2014 12:34:07 +0100
 
