@@ -1,0 +1,2 @@
+allow \.debian\.org$
+allow \.debian\.net$

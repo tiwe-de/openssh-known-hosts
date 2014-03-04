@@ -1,0 +1,4 @@
+PLUGIN=curl
+EXIT_IGNORE='6 7 28'
+
+URL='https://db.debian.org/debian_known_hosts'
