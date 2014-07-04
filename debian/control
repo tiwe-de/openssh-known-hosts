@@ -5,8 +5,8 @@ Maintainer: Timo Weingärtner <timo@tiwe.de>
 Build-Depends: debhelper (>= 7), pandoc
 Standards-Version: 3.9.5
 Homepage: https://github.com/tiwe-de/openssh-known-hosts
-Vcs-Git: git://github.com/tiwe-de/openssh-known-hosts.git -b debian
-Vcs-Browser: https://github.com/tiwe-de/openssh-known-hosts/tree/debian
+Vcs-Git: git://github.com/tiwe-de/openssh-known-hosts.git -b debian-bpo-wheezy
+Vcs-Browser: https://github.com/tiwe-de/openssh-known-hosts/tree/debian-bpo-wheezy
 
 Package: openssh-known-hosts
 Architecture: all
