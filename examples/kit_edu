@@ -1,0 +1,5 @@
+PLUGIN=curl
+EXIT_IGNORE='6 7 28'
+
+CURL_OPTIONS='--connect-timeout 10'
+URL='https://rzadmin.rz.uni-karlsruhe.de/openssh/ssh_known_hosts'

@@ -1,3 +1,31 @@
+commit 43b1b4cbfb1aeabf3c9542c27c971790bf77cf91 (HEAD, master)
+Author: Timo Weingärtner <timo@tiwe.de>
+Date:   2015-02-17 19:39:41 +0100
+
+    apply shellcheck to update-openssh-known-hosts
+    
+    applied with care, the two remaining things are meant that way
+
+commit 0e971e742afad1669dbae0d75eead51e76af1899 (origin/master)
+Author: Timo Weingärtner <timo@tiwe.de>
+Date:   2015-01-22 20:34:42 +0100
+
+    plugins/curl: fix silent wrong output on HTTP 404
+
+commit 4a043c6de09658a97dff8ec2d7b311c4f4bce3af
+Author: Timo Weingärtner <timo@tiwe.de>
+Date:   2014-03-04 17:18:25 +0100
+
+    add some real-life examples
+    
+    kit_edu has connect-timeout because firewall DROPs connections from outside
+
+commit a1ccb1e836177276c23851fc015ec5c7ebf9f362 (tag: 0.6.1)
+Author: Timo Weingärtner <timo@tiwe.de>
+Date:   2014-02-18 18:39:44 +0100
+
+    changelog for 0.6.1
+
 commit f8b47031fd65b9055e6a89a961466bdb367cd710
 Author: Timo Weingärtner <timo@tiwe.de>
 Date:   2014-02-18 18:25:08 +0100

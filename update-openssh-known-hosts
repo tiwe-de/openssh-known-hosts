@@ -41,7 +41,7 @@ path_search () {
 			return 0
 		fi
 	done
-	echo "'${search}' not found in '$@'!" >&2
+	echo "'${search}' not found in '$*'!" >&2
 	exit 127
 }
 
@@ -70,17 +70,17 @@ find -mindepth 2 -maxdepth 2 -type f -name new -delete
 
 run-parts --list "${CONFDIR}/sources/" | while read sourcefile; do
 	source=${sourcefile##*/}
-	mkdir -p ${source}
+	mkdir -p "${source}"
 	(
 		set -a
-		cd ${source}
+		cd "${source}"
 		. "${sourcefile}"
 		$(path_search "$PLUGIN" "$PLUGIN_PATH") >| log 2>&1 || {
 			exitcode=$?
 			rm -f new
 			ignore=''
 			for e in ${EXIT_IGNORE:-0}; do
-				if [[ $e = $exitcode ]]; then
+				if [[ $e = "$exitcode" ]]; then
 					ignore=1
 					break
 				fi
@@ -95,22 +95,22 @@ run-parts --list "${CONFDIR}/sources/" | while read sourcefile; do
 			fi
 		} >&2
 	) || exit 1
-	if [ -e ${source}/new ]; then
-		mv ${source}/new ${source}/current
+	if [ -e "${source}/new" ]; then
+		mv "${source}/new" "${source}/current"
 	fi
-	if [ -e ${source}/current ]; then
+	if [ -e "${source}/current" ]; then
 		if [ -e "${sourcefile}.filter" ]; then
 			if [[ ${source}/filtered -ot ${source}/current ]] || [[ ${source}/filtered -ot ${sourcefile}.filter ]]; then
 				mapfile -t filter < "${sourcefile}.filter"
-				for i in ${!filter[@]}; do
+				for i in "${!filter[@]}"; do
 					if [[ ${filter[$i]} =~ ^($|#) ]]; then
 						unset filter[$i]
 					fi
 				done
 				while read hostlist rest; do
-					IFS=, read -a hostarray <<<$hostlist
+					IFS=, read -a hostarray <<<"$hostlist"
 					new_hostlist=''
-					for host in ${hostarray[@]}; do
+					for host in "${hostarray[@]}"; do
 						for rule in "${filter[@]}"; do
 							if [[ ${host} =~ ${rule#* } ]]; then
 								if [[ ${rule%% *} =~ ^[aopy] ]]; then
@@ -122,12 +122,12 @@ run-parts --list "${CONFDIR}/sources/" | while read sourcefile; do
 					done
 					[ "$new_hostlist" ] || continue
 					echo "${new_hostlist%,} ${rest}"
-				done < ${source}/current | sort -u >| ${source}/filtered.new
-				mv ${source}/filtered.new ${source}/filtered
+				done < "${source}/current" | sort -u >| "${source}/filtered.new"
+				mv "${source}/filtered.new" "${source}/filtered"
 			fi
-			cat ${source}/filtered >&3
+			cat "${source}/filtered" >&3
 		else
-			sort -u ${source}/current >&3
+			sort -u "${source}/current" >&3
 		fi
 	fi
 done 3>| "${OUTFILE}.new"
@@ -140,8 +140,8 @@ fi
 
 # clean up cache dirs of vanished sources
 for d in *; do
-	[ -d $d ] || continue
-	[ -e "${CONFDIR}/sources/$d" ] || rm -fr $d
+	[ -d "$d" ] || continue
+	[ -e "${CONFDIR}/sources/$d" ] || rm -fr "$d"
 done
 
 # vim:set ft=sh:

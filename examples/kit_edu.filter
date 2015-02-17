@@ -1,0 +1,2 @@
+allow \.(fzk|uka|uni-karlsruhe)\.de$
+allow \.kit\.edu$
