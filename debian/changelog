@@ -1,3 +1,11 @@
+openssh-known-hosts (0.6.2-1) unstable; urgency=medium
+
+  * New upstream version
+  * fix invalid-short-name-in-dep5-copyright lintian warning
+  * Bump Standards-Version
+
+ -- Timo Weingärtner <timo@tiwe.de>  Tue, 17 Feb 2015 19:56:53 +0100
+
 openssh-known-hosts (0.6.1-3) unstable; urgency=medium
 
   * postrm: only act on purge, don't fail when empty
